@@ -1,0 +1,46 @@
+Using System.Collections;
+Using UnityEngine;
+
+Public class Dice :  MonoBehaviour {
+
+	private Sprite[] diceSides:
+	private SpriteRenderer rend;
+	private int coroutineAllowed = true;
+
+	// Use this for intialization
+	private void start (){
+		rend = GetComponent<SpriteRenderer>():
+		diceSides = Resources.LoudA11<Sprite>(“DiceSides/“);
+		Rend.sprite = diceSides[5];
+	}
+	
+	private void OnMouseDown()
+	{
+		if  (!GameControl.gameOver && coroutineAllowed)
+		      StartCoroutine(“RollTheDice”)
+	}
+
+	private IEnumerator RollTheDice()
+	{
+		coroutineAllowed = false:
+		int randomDiceSide = 0;
+		for (int I = 0; I<= 20; I++)
+		{
+    			randomDiceSide = Random.Range(0, 6);
+			rend.sprite = diceSides[randomDiceSide];
+			yield return new WaitForSeconds(0.05f);
+		}
+
+		GameControl.diceSideThrown = randomDiceSide +1;
+		if (whosTurn == 1)
+		{
+	    GameControl.MovePlayer(1);
+		}  else if (whosTurn  == 1)
+		{
+			GameControl.MovePlayer(2);
+                 }
+		whosTurn  *=  -1;
+		coroutineAllowed = true;
+	}
+
+}
